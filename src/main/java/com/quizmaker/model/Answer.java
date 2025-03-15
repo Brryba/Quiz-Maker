@@ -1,5 +1,6 @@
-package com.quizmaker.model.answer;
+package com.quizmaker.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -8,16 +9,21 @@ import jakarta.persistence.Table;
 @Table(name = "answers")
 public class Answer {
     @Id
+    @Column(unique = true, nullable = false)
     private Integer answerId;
     private Integer questionId;
-    private Boolean isCorrect;
+    private String answerText;
+
+    public String getAnswerText() {
+        return answerText;
+    }
+
+    public void setAnswerText(String answerText) {
+        this.answerText = answerText;
+    }
 
     public Integer getQuestionId() {
         return questionId;
-    }
-
-    public Boolean getIsCorrect() {
-        return isCorrect;
     }
 
     public void setAnswerId(Integer answerId) {
@@ -30,9 +36,5 @@ public class Answer {
 
     public void setQuestionId(Integer questionId) {
         this.questionId = questionId;
-    }
-
-    public void setIsCorrect(Boolean correct) {
-        isCorrect = correct;
     }
 }

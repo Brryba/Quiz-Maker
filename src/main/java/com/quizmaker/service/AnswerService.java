@@ -1,7 +1,7 @@
 package com.quizmaker.service;
 
-import com.quizmaker.model.answer.Answer;
-import com.quizmaker.repository.answer.AnswerRepository;
+import com.quizmaker.model.Answer;
+import com.quizmaker.repository.AnswerRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,12 +20,12 @@ public class AnswerService {
     }
 
     public Answer updateAnswer(Answer answer) {
+        //The answer object I need from DB
         Optional<Answer> optionalAnswer = answerRepository.findById(answer.getAnswerId());
         if (optionalAnswer.isPresent()) {
             Answer answerToUpdate = optionalAnswer.get();
             answerToUpdate.setQuestionId(answer.getQuestionId());
             answerToUpdate.setAnswerId(answer.getAnswerId());
-            answerToUpdate.setIsCorrect(answer.getIsCorrect());
 
             return answerRepository.save(answerToUpdate);
         }
